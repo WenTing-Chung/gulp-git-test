@@ -66,7 +66,7 @@ function git_add() {
 function git_commit() {
   console.log('commiting')
   return gulp.src('.')
-    .pipe($.git.commit(`${time}, 測試gulp commit`))
+    .pipe($.git.commit(`${time}, 修改watch function`))
 }
 
 function git_push(cb) {
@@ -83,9 +83,10 @@ exports.git = gulp.series(git_add, git_commit, git_push)
 exports.public = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5)
 
 // 按照順序執行並持續監控
-exports.public_watch = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5, function(cb) {
-  gulp.watch('./src/sass/**/*.sass', gulp.series(sass_CSS))
-  gulp.watch('./src/**/*.jade', gulp.series(jade_HTML))
+exports.watch = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5, function(cb) {
+  $.watch('./src/sass/**/*.sass', gulp.series(sass_CSS))
+  $.watch('./src/**/*.jade', gulp.series(jade_HTML))
+  $.watch('./src/js/**/*.js', gulp.series(babel_ES5))
   cb()
 })
 
