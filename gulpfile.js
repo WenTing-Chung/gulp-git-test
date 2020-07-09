@@ -66,7 +66,7 @@ function git_add() {
 function git_commit() {
   console.log('commiting')
   return gulp.src('.')
-    .pipe($.git.commit(`${time}, 修改watch function`))
+    .pipe($.git.commit(`${time}, 添加.sh 腳本`))
 }
 
 function git_push(cb) {
