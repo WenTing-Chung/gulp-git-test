@@ -66,7 +66,7 @@ function git_add() {
 function git_commit() {
   console.log('commiting')
   return gulp.src('.')
-    .pipe($.git.commit(`${time}, modify file name`))
+    .pipe($.git.commit(`${time}, 測試gulp commit`))
 }
 
 function git_push(cb) {
@@ -80,10 +80,10 @@ function git_push(cb) {
 exports.git = gulp.series(git_add, git_commit, git_push)
 
 // 編譯產生public
-exports.make = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5)
+exports.public = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5)
 
 // 按照順序執行並持續監控
-exports.continued = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5, function(cb) {
+exports.public_watch = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5, function(cb) {
   gulp.watch('./src/sass/**/*.sass', gulp.series(sass_CSS))
   gulp.watch('./src/**/*.jade', gulp.series(jade_HTML))
   cb()
