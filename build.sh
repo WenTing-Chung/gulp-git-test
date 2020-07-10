@@ -11,6 +11,6 @@ git init
 git add -A
 git commit -m 'test build'
 # 部署到 https://github.com/yyy/zzz.git 分支為 gh-pages
-git push -f https://github.com/WonTing/gulp-git-test master:develop
+git push -f https://github.com/WonTing/gulp-git-test.git master:develop
 # 將dist資料夾中的內容推送至遠端zzz的gh-pages分支中，並強制無條件將舊有的內容取代成目前的內容（指令 git push -f)
 cd -
