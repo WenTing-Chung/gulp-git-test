@@ -82,5 +82,9 @@ exports.git = gulp.series(git_add, git_commit, git_push)
 // 編譯產生public
 exports.public = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5)
 
+exports.watch = gulp.series(copy_HTML, jade_HTML, sass_CSS, babel_ES5, function() {
+  $.watch('./src/sass/**/*.sass', gulp.series(sass_CSS))
+})
+
 // 刪除public 資料夾
 exports.remove = remove
